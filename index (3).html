@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Theme Sudoku – a customizable Sudoku game powered by AI that replaces numbers with emojis matching any theme you choose." />
+  <title>Theme Sudoku</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- SETUP SCREEN -->
+  <div id="setup-screen" class="screen active">
+    <div class="setup-inner">
+      <div class="logo-area">
+        <span class="logo-icon">⬛</span>
+        <h1>Theme<br/><em>Sudoku</em></h1>
+        <p class="tagline">Numbers are boring. Play with anything.</p>
+      </div>
+
+      <div class="setup-card">
+        <div class="field-group">
+          <label for="theme-input">What's your theme?</label>
+          <input
+            type="text"
+            id="theme-input"
+            placeholder="e.g. Studio Ghibli characters, planets, sushi…"
+            maxlength="80"
+          />
+        </div>
+
+        <div class="field-group">
+          <label>Difficulty</label>
+          <div class="difficulty-pills">
+            <button class="pill active" data-diff="easy">Easy</button>
+            <button class="pill" data-diff="medium">Medium</button>
+            <button class="pill" data-diff="hard">Hard</button>
+            <button class="pill" data-diff="expert">Expert</button>
+          </div>
+        </div>
+
+        <button id="start-btn" class="primary-btn">
+          <span class="btn-label">Generate & Play</span>
+          <span class="btn-arrow">→</span>
+        </button>
+
+        <p class="disclaimer">AI picks 9 emojis to match your theme. No images needed.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADING SCREEN -->
+  <div id="loading-screen" class="screen">
+    <div class="loading-inner">
+      <div class="spinner-grid" id="spinner-grid"></div>
+      <p id="loading-text">Summoning emojis…</p>
+    </div>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="game-screen" class="screen">
+    <header class="game-header">
+      <button id="back-btn" class="icon-btn" title="New Game">← New</button>
+      <div class="header-center">
+        <span id="game-theme-label" class="theme-label"></span>
+        <span id="difficulty-label" class="diff-label"></span>
+      </div>
+      <div class="header-right">
+        <span id="timer" class="timer">00:00</span>
+        <button id="hint-btn" class="icon-btn" title="Hint">💡</button>
+      </div>
+    </header>
+
+    <!-- Legend -->
+    <div id="legend" class="legend"></div>
+
+    <!-- Board -->
+    <div id="board" class="board" role="grid" aria-label="Sudoku board"></div>
+
+    <!-- Palette -->
+    <div id="palette" class="palette" role="toolbar" aria-label="Symbol palette"></div>
+
+    <!-- Controls -->
+    <div class="game-controls">
+      <button id="erase-btn" class="ctrl-btn">⌫ Erase</button>
+      <button id="check-btn" class="ctrl-btn accent">✓ Check</button>
+      <button id="solve-btn" class="ctrl-btn subtle">🔮 Solve</button>
+    </div>
+
+    <!-- Win banner -->
+    <div id="win-banner" class="win-banner hidden">
+      <div class="win-inner">
+        <div class="win-emoji" id="win-emoji"></div>
+        <h2>Puzzle Solved!</h2>
+        <p id="win-time"></p>
+        <button id="play-again-btn" class="primary-btn">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="sudoku.js"></script>
+</body>
+</html>
