@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Beckett's Special Sudoku – play Sudoku with AI-generated images or classic numbers." />
+  <title>Beckett's Special Sudoku</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ══════════════ SETUP SCREEN ══════════════ -->
+  <div id="setup-screen" class="screen active">
+    <!-- Full-screen background grid -->
+    <div class="bg-sudoku-grid" id="bg-sudoku-grid"></div>
+    <!-- Dark radial overlay so content stays readable -->
+    <div class="bg-overlay"></div>
+
+    <div class="setup-layout">
+      <div class="setup-brand">
+        <div class="brand-grid-preview" id="brand-grid-preview">
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+          <div class="bgp-cell"></div>
+        </div>
+        <h1>Beckett's<br/><em>Special Sudoku</em></h1>
+        <p class="tagline">AI curates 9 images for<br/>any theme you imagine.</p>
+      </div>
+
+      <div class="setup-form">
+
+        <!-- Mode toggle -->
+        <div class="field-group">
+          <label>Mode</label>
+          <div class="mode-toggle">
+            <button class="mode-btn active" data-mode="theme">
+              <span class="mode-text">
+                <strong>Theme</strong>
+                <small>AI picks images</small>
+              </span>
+            </button>
+            <button class="mode-btn" data-mode="classic">
+              <span class="mode-text">
+                <strong>Classic</strong>
+                <small>Standard numbers</small>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Theme input — hidden when classic mode active -->
+        <div class="field-group" id="theme-field">
+          <label for="theme-input">Your theme</label>
+          <input
+            type="text"
+            id="theme-input"
+            placeholder="e.g. Studio Ghibli characters, deep sea creatures…"
+            maxlength="80"
+            autocomplete="off"
+          />
+          <span class="field-hint">Be specific for better images</span>
+        </div>
+
+        <div class="field-group">
+          <label>Difficulty</label>
+          <div class="difficulty-pills">
+            <button class="pill" data-diff="easy">Easy</button>
+            <button class="pill active" data-diff="medium">Medium</button>
+            <button class="pill" data-diff="hard">Hard</button>
+            <button class="pill" data-diff="expert">Expert</button>
+          </div>
+        </div>
+
+        <button id="start-btn" class="primary-btn">
+          Generate &amp; Play &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ LOADING SCREEN ══════════════ -->
+  <div id="loading-screen" class="screen">
+    <div class="loading-inner">
+      <div class="loading-grid" id="loading-grid"></div>
+      <p id="loading-text" class="loading-text">Generating images…</p>
+    </div>
+  </div>
+
+  <!-- ══════════════ GAME SCREEN ══════════════ -->
+  <div id="game-screen" class="screen">
+    <div class="game-layout">
+
+      <!-- LEFT: Board column -->
+      <div class="board-column">
+        <div class="board-topbar">
+          <button id="back-btn" class="ghost-btn">&larr; New Game</button>
+          <div class="board-meta">
+            <span id="game-theme-label" class="theme-pill"></span>
+            <span id="difficulty-label" class="diff-tag"></span>
+          </div>
+          <div class="timer-wrap">
+            <span id="timer">00:00</span>
+          </div>
+        </div>
+
+        <div id="board" class="board" role="grid" aria-label="Sudoku board"></div>
+      </div>
+
+      <!-- RIGHT: Controls column -->
+      <div class="controls-column">
+        <div class="section-label" id="palette-label">Symbols</div>
+        <div id="palette" class="palette" role="toolbar"></div>
+
+        <div class="control-actions">
+          <button id="erase-btn" class="action-btn">&#x232B; Erase</button>
+          <button id="hint-btn" class="action-btn">&#x1F4A1; Hint</button>
+          <button id="check-btn" class="action-btn accent">&#x2713; Check</button>
+          <button id="solve-btn" class="action-btn muted">&#x1F52E; Solve</button>
+        </div>
+
+        <div class="key-legend">
+          <div class="key-legend-title">Keyboard shortcuts</div>
+          <div class="key-row"><kbd>1</kbd>–<kbd>9</kbd> &nbsp;select symbol</div>
+          <div class="key-row"><kbd>↑↓←→</kbd> &nbsp;navigate cells</div>
+          <div class="key-row"><kbd>Del</kbd> &nbsp;erase cell</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Win banner -->
+    <div id="win-banner" class="win-banner hidden">
+      <div class="win-inner">
+        <div class="win-img-wrap" id="win-img-wrap"></div>
+        <h2>Puzzle Solved!</h2>
+        <p id="win-time"></p>
+        <button id="play-again-btn" class="primary-btn">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Populate the full-screen background sudoku grid
+    const bgGrid = document.getElementById('bg-sudoku-grid');
+    for (let i = 0; i < 81; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'bg-sudoku-cell';
+      bgGrid.appendChild(cell);
+    }
+  </script>
+  <script src="sudoku.js"></script>
+</body>
+</html>
